@@ -29,6 +29,10 @@ return require('packer').startup(function(use)
   use 'mhinz/vim-startify'
   use 'lewis6991/gitsigns.nvim'
   use 'numToStr/Comment.nvim'
+  use {'neoclide/coc.nvim', branch = 'release'}
+  use {'SirVer/ultisnips'}  
+  use {'honza/vim-snippets'}
+  use {"windwp/nvim-autopairs"}
 
 
   -- Automatically set up your configuration after cloning packer.nvim

@@ -22,6 +22,11 @@ end
 
 vim.api.nvim_set_keymap("n", "<c-n>", ":lua OpenTerminal()<CR>", {})
 
+--Unsure of where else to pit this.
+vim.g.UltiSnipsSnippetDirectories = {'UltiSnips'}
+vim.cmd('filetype plugin on')
+
+
 require("core.keymaps")
 require("core.plugins")
 require("core.plugin_config")
