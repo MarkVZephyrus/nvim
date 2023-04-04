@@ -33,6 +33,7 @@ return require('packer').startup(function(use)
   use {'SirVer/ultisnips'}  
   use {'honza/vim-snippets'}
   use {"windwp/nvim-autopairs"}
+  use 'gelguy/wilder.nvim'
 
 
   -- Automatically set up your configuration after cloning packer.nvim
