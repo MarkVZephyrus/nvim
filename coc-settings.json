@@ -5,3 +5,10 @@
     "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
   }
 }
+"languageserver": {
+  "bash": {
+    "command": "bash-language-server",
+    "args": ["start"],
+    "filetypes": ["sh"]
+  }
+}

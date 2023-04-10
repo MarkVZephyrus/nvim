@@ -28,12 +28,13 @@ return require('packer').startup(function(use)
   use 'yamatsum/nvim-cursorline'
   use 'mhinz/vim-startify'
   use 'lewis6991/gitsigns.nvim'
-  use 'numToStr/Comment.nvim'
   use {'neoclide/coc.nvim', branch = 'release'}
   use {'SirVer/ultisnips'}  
   use {'honza/vim-snippets'}
   use {"windwp/nvim-autopairs"}
   use 'gelguy/wilder.nvim'
+  use 'preservim/nerdcommenter'
+  use 'karb94/neoscroll.nvim'
 
 
   -- Automatically set up your configuration after cloning packer.nvim

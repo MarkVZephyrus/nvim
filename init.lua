@@ -1,4 +1,7 @@
 vim.cmd[[set number]]
+vim.cmd[[set foldmethod=expr]]
+vim.cmd[[set foldexpr=nvim_treesitter#foldexpr()]]
+vim.cmd[[set nofoldenable]]
 -- open new split panes to right and below
 vim.o.splitright = true
 vim.o.splitbelow = true
@@ -16,7 +19,7 @@ vim.api.nvim_exec([[
 
 -- open terminal on ctrl+n
 function OpenTerminal()
-  vim.api.nvim_command("split term://bash")
+  vim.api.nvim_command("split term://zsh")
   vim.api.nvim_command("resize 10")
 end
 
