@@ -34,8 +34,9 @@ return require('packer').startup(function(use)
   use {"windwp/nvim-autopairs"}
   use 'gelguy/wilder.nvim'
   use 'preservim/nerdcommenter'
-  use 'karb94/neoscroll.nvim'
-
+  use { 'AlphaTechnolog/pywal.nvim', as = 'pywal' }
+  use 'smolck/command-completion.nvim'
+  use 'kdheepak/lazygit.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
