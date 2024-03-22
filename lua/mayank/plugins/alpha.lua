@@ -33,12 +33,36 @@ return {
 		vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
 
 		-- hide statusline and tabline
-		-- vim.api.nvim_create_autocmd("User", {
-		-- 	pattern = "AlphaReady",
-		-- 	command = "set showtabline=0 | set laststatus=0",
-		-- })
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "AlphaReady",
+			command = "set showtabline=0 | set laststatus=0",
+		})
+		vim.api.nvim_create_autocmd("BufUnload", {
+			buffer = 0,
+			command = "set showtabline=2 | set laststatus=2",
+		})
 
-		-- Dynamic padding
+		-- Hide cursor when in Alpha buffer. Downside is that you cannot see the cursor in another windows such as Nvim tree
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "AlphaReady",
+			desc = "hide cursor for alpha",
+			callback = function()
+				local hl = vim.api.nvim_get_hl(0, { name = "Cursor" })
+				hl.blend = 100
+				vim.api.nvim_set_hl(0, "Cursor", hl)
+				vim.opt.guicursor:append("a:Cursor/lCursor")
+			end,
+		})
+		vim.api.nvim_create_autocmd("BufUnload", {
+			buffer = 0,
+			desc = "show cursor after alpha",
+			callback = function()
+				local hl = vim.api.nvim_get_hl(0, { name = "Cursor" })
+				hl.blend = 0
+				vim.api.nvim_set_hl(0, "Cursor", hl)
+				vim.opt.guicursor:remove("a:Cursor/lCursor")
+			end,
+		}) -- Dynamic padding
 		local section = dashboard.section
 		local fn = vim.fn
 		local config = dashboard.opts
