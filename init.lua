@@ -1,2 +1,2 @@
-require("mayank.core")
-require("mayank.lazy")
+require('mayank.core')
+require('mayank.lazy')

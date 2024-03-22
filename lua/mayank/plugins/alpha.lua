@@ -1,78 +1,59 @@
 return {
 	"goolord/alpha-nvim",
-	event = "VimEnter", -- load plugin after all configuration is set
-	dependencies = {
-		"nvim-tree/nvim-web-devicons",
-	},
-
+	event = "VimEnter",
 	config = function()
 		local alpha = require("alpha")
 		local dashboard = require("alpha.themes.dashboard")
-
-		dashboard.section.header.val = {
-			[[                                                                       ]],
-			[[                                                                       ]],
-			[[                                                                       ]],
-			[[                                                                       ]],
-			[[                                                                       ]],
-			[[                                                                       ]],
-			[[                                                                       ]],
-			[[                                                                     ]],
-			[[       ████ ██████           █████      ██                     ]],
-			[[      ███████████             █████                             ]],
-			[[      █████████ ███████████████████ ███   ███████████   ]],
-			[[     █████████  ███    █████████████ █████ ██████████████   ]],
-			[[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
-			[[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
-			[[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
-			[[                                                                       ]],
-			[[                                                                       ]],
-			[[                                                                       ]],
+		local logo = {
+			"                                                     ",
+			"  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
+			"  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
+			"  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
+			"  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
+			"  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
+			"  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
+			"                                                     ",
 		}
-
-		_Gopts = {
-			position = "center",
-			hl = "Type",
-			-- wrap = "overflow";
-		}
+		dashboard.section.header.val = logo
 
 		-- Set menu
 		dashboard.section.buttons.val = {
-			-- dashboard.button("SPC j", "󰈚   Restore Session", ":SessionRestore<cr>"),
-			dashboard.button("e", "   New file", ":ene <BAR> startinsert <CR>"),
-			dashboard.button("f", "   Find file", ":cd $HOME/dotfiles/.config | Telescope find_files<CR>"),
-			dashboard.button("g", "󰱼   Find word", ":Telescope live_grep<CR>"),
-			dashboard.button("r", "   Recent", ":Telescope oldfiles<CR>"),
-			dashboard.button("c", "   Config", ":e $MYVIMRC <CR>"),
-			dashboard.button("m", "󱌣   Mason", ":Mason<CR>"),
-			dashboard.button("l", "󰒲   Lazy", ":Lazy<CR>"),
-			dashboard.button("u", "󰂖   Update plugins", "<cmd>lua require('lazy').sync()<CR>"),
-			dashboard.button("q", "   Quit NVIM", ":qa<CR>"),
+			dashboard.button("e", "     New File", "<cmd>ene<CR>"),
+			dashboard.button("E", "     Toggle file explorer", "<cmd>NvimTreeToggle<CR>"),
+			dashboard.button("n", "󰱼     Find File", "<cmd>Telescope find_files<CR>"),
+			dashboard.button("r", "     Recents", "<cmd>Telescope oldfiles<CR>"),
+			dashboard.button("S", "     Restore Session For Current Directory", "<cmd>SessionRestore<CR>"),
+			dashboard.button("q", "     Quit NVIM", "<cmd>qa<CR>"),
 		}
 
-		--local function footer()
-		--return "Mohammed Babiker Babai"
-		--end
+		-- local fortune = require("alpha.fortune") -- not as fun as the startify cow
+		dashboard.section.footer.val = "🌕 Try not to config. 🌑" -- fortune()
 
-		--dashboard.section.footer.val = footer()
+		-- alpha.setup(require("alpha.themes.startify").config)
+		vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
 
-		dashboard.opts.opts.noautocmd = true
-		alpha.setup(dashboard.opts)
+		-- hide statusline and tabline
+		-- vim.api.nvim_create_autocmd("User", {
+		-- 	pattern = "AlphaReady",
+		-- 	command = "set showtabline=0 | set laststatus=0",
+		-- })
 
-		require("alpha").setup(dashboard.opts)
+		-- Dynamic padding
+		local section = dashboard.section
+		local fn = vim.fn
+		local config = dashboard.opts
 
-		vim.api.nvim_create_autocmd("User", {
-			pattern = "LazyVimStarted",
-			callback = function()
-				local stats = require("lazy").stats()
-				local count = (math.floor(stats.startuptime * 100) / 100)
-				dashboard.section.footer.val = {
-					"󱐌 " .. stats.count .. " plugins loaded in " .. count .. " ms",
-					" ",
-					"      Mohammed Babiker Babai",
-				}
-				pcall(vim.cmd.AlphaRedraw)
-			end,
-		})
+		local marginTopPercent = 0.3
+		local headerPadding = fn.max({ 2, fn.floor(fn.winheight(0) * marginTopPercent) })
+
+		config.layout = {
+			{ type = "padding", val = headerPadding },
+			section.header,
+			{ type = "padding", val = 2 },
+			section.buttons,
+			section.footer,
+		}
+
+		alpha.setup(config)
 	end,
 }

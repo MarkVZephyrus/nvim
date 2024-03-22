@@ -20,4 +20,7 @@ keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) 
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
 --NvimTree
-keymap.set("n", "<C-e>", ':NvimTreeToggle<CR>')
+keymap.set("n", "<C-e>", ":NvimTreeToggle<CR>")
+
+--ToggleTerm
+keymap.set("n", "<C-n>", ":ToggleTerm<CR>")
