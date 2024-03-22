@@ -39,7 +39,7 @@ return {
 		})
 		vim.api.nvim_create_autocmd("BufUnload", {
 			buffer = 0,
-			command = "set showtabline=2 | set laststatus=2",
+			command = "set showtabline=2 | set laststatus=3", -- laststus 3 is important for the statusline to be common among windows.
 		})
 
 		-- Hide cursor when in Alpha buffer. Downside is that you cannot see the cursor in another windows such as Nvim tree

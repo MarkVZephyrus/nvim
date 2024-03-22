@@ -3,6 +3,7 @@ return {
 	config = function()
 		require("lualine").setup({
 			options = {
+				globalstatus = true,
 				theme = "pywal",
 			},
 		})
