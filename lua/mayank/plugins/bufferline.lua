@@ -16,17 +16,13 @@ return {
 						separator = true,
 					},
 				},
+
 				hover = {
 					enabled = true,
 					delay = 200,
 					reveal = { "close" },
 				},
 				color_icons = true,
-				separator_style = "slant",
-				highlight = {
-					underline = true,
-					sp = "blue",
-				},
 			},
 		})
 	end,
