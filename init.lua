@@ -1,3 +1,3 @@
 require("mayank.core")
 require("mayank.lazy")
-vim.cmd([[colorscheme tokyonight-storm]])
+vim.cmd([[colorscheme tokyonight-night]])
