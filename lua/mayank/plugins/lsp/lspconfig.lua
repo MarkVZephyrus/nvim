@@ -98,5 +98,12 @@ return {
     -- 	capabilities = capabilities,
     -- 	on_attach = on_attach,
     -- })
+
+    -- GLSL
+    -- be sure to install glsl_analyzer: https://github.com/nolanderc/glsl_analyzer
+    lspconfig.glsl_analyzer.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
   end,
 }
