@@ -20,4 +20,8 @@ keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) 
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
 --ToggleTerm
-keymap.set("n", "<leader>tt", ":ToggleTerm<CR>")
+keymap.set("n", "<leader>tt", ":ToggleTerm<CR>", { desc = "H-Split terminal, although just use tmux bro." })
+
+-- Sessions
+keymap.set("n", "<leader>sr", "<cmd>SessionRestore<CR>", { desc = "Restore Session from <cwd>." })
+keymap.set("n", "<leader>sq", "<cmd>SessionSearch<CR>", { desc = "Query all saved session." })

@@ -18,7 +18,7 @@ return {
 
     -- Set menu
     dashboard.section.buttons.val = {
-      dashboard.button("S", "", "<cmd>SessionRestore<CR>"),
+      -- dashboard.button("S", "", "<cmd>SessionRestore<CR>"),
     }
 
     -- local fortune = require("alpha.fortune") -- not as fun as the startify cow
