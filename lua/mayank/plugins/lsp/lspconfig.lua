@@ -105,5 +105,16 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
     })
+
+    lspconfig.omnisharp.setup {
+      cmd = {
+        'mono',
+        '--assembly-loader=strict',
+        '/home/mayank/.dotnet/omnisharp-linux-x64/omnisharp/OmniSharp.exe'
+      },
+      capabilities = capabilities,
+      on_attach = on_attach,
+      use_mono = true,
+    }
   end,
 }
